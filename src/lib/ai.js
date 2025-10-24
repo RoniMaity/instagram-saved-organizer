@@ -1,4 +1,4 @@
-// import 'dotenv/config'ch
+import 'dotenv/config'
 
 import OpenAI from "openai";
 
