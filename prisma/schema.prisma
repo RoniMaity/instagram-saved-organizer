@@ -11,34 +11,42 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())  
-  name     String
-  email    String  @unique
-  password String
-  posts    PostSaved[]
+  id        String      @id @default(uuid())
+  name      String
+  email     String      @unique
+  password  String
+  posts     PostSaved[]
+  categories Category[]
 }
+
 
 model Category {
-  id        String   @id @default(uuid())
-  name      String   @unique
-  posts     PostSaved[]
+  id     String   @id @default(uuid())
+  name   String
+  userId String
+  user   User     @relation(fields: [userId], references: [id])
+  posts  PostSaved[]
+
+  @@unique([name, userId])
 }
 
-model Media{
-  id String @id @default(uuid())
-  type String
-  url String @unique
+
+model Media {
+  id     String @id @default(uuid())
+  type   String
+  url    String
   postID String
-  post PostSaved @relation(fields: [postID], references: [id])
+  post   PostSaved @relation(fields: [postID], references: [id])
 }
+
 
 model PostSaved {
   id        String   @id @default(uuid())
-  postUrl      String
-  postType     String
+  postUrl   String
+  postType  String
   userId    String
   categoryId String
-  media   Media[]
+  media     Media[]
   user      User     @relation(fields: [userId], references: [id])
   category  Category @relation(fields: [categoryId], references: [id])
 }
