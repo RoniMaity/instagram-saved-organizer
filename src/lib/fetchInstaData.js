@@ -1,4 +1,4 @@
-import 'dotenv/config'
+// import 'dotenv/config'
 
 import { categorize } from '/Users/ronimaity/Desktop/instagram-saved-organizer/src/lib/ai.js';
 import { ApifyClient } from "apify-client";
@@ -8,7 +8,7 @@ const ACTOR_ID = process.env.APIFY_ACTOR_ID;
 
 function handleData(data) {
 
-    console.log("handle data called")
+    // console.log("handle data called")
 
     const postUrl = data[0].url;
     const postType = data[0].type;
@@ -16,6 +16,7 @@ function handleData(data) {
     const hashtags = data[0].hashtags;
     let imageUrls = [];
     let videoUrls = [];
+
     if (postType === "Sidecar") {
 
         if (data[0].images) {
@@ -81,4 +82,4 @@ export async function fetchInstaData(url) {
 //Sidecar
 //Video
 //Image
-fetchInstaData('https://www.instagram.com/p/DPi1k5hE4wy/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==');
+// fetchInstaData('https://www.instagram.com/p/DPi1k5hE4wy/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==');
