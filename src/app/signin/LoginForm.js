@@ -1,4 +1,3 @@
-// src/app/login/LoginForm.js
 'use client'
 
 import { useState } from 'react'
@@ -92,6 +91,9 @@ export default function LoginForm() {
 
                             <Button type="submit" colorScheme="teal" isLoading={loading} alignSelf="flex-start">
                                 Login
+                            </Button>
+                            <Button variant="link" onClick={() => router.push('/signup')}>
+                                Don&apos;t have an account? Sign Up
                             </Button>
                         </Stack>
                     </Fieldset.Root>

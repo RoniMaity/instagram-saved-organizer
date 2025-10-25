@@ -1,4 +1,3 @@
-// src/app/signup/page.js
 import { cookies } from 'next/headers'
 import { verifyJWT } from '@/lib/jwt'
 import SignUpForm from './SignUpForm'
@@ -15,7 +14,7 @@ export default async function SignUpPage() {
         const user = verifyJWT(token)
         if (user) {
             redirect('/dashboard')
-        }else{
+        } else {
             redirect('/signin')
         }
 

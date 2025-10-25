@@ -1,4 +1,3 @@
-// src/app/signup/SignUpForm.js
 'use client'
 
 import { useState } from 'react'
@@ -101,6 +100,9 @@ export default function SignUpForm() {
 
             <Button type="submit" alignSelf="flex-start" isLoading={loading} colorScheme="teal">
               Sign Up
+            </Button>
+            <Button variant="link" onClick={() => router.push('/signin')}>
+              Already have an account? Sign In
             </Button>
           </Stack>
         </Fieldset.Root>

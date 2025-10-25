@@ -1,4 +1,3 @@
-// src/app/login/page.js
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { verifyJWT } from '@/lib/jwt'
@@ -12,9 +11,9 @@ export default async function LoginPage() {
         const user = verifyJWT(token)
         if (user) {
             redirect('/dashboard')
+        } else {
+            redirect('/signin')
         }
-    } else {
-        redirect('/signup')
     }
 
     return <LoginForm />
