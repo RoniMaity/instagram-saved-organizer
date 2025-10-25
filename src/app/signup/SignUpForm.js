@@ -10,6 +10,7 @@ import {
   AbsoluteCenter,
   Heading,
   Highlight,
+  ProgressCircle
 } from "@chakra-ui/react"
 import { useRouter } from 'next/navigation'
 
@@ -45,68 +46,75 @@ export default function SignUpForm() {
 
   return (
     <AbsoluteCenter>
-      <form onSubmit={handleSubmit}>
-        <Fieldset.Root size="lg" maxW="md">
-          <Stack spacing={6}>
-            <Heading size="3xl" letterSpacing="tight">
-              Turn your saved Instagram posts{" "}
-              <Highlight query="chaos" styles={{ color: "teal.600" }}>
-                chaos
-              </Highlight>{" "}
-              into organized collections
-            </Heading>
+      {loading ? (
+        <ProgressCircle.Root value={null} size="xl" colorPalette={{ base: "teal.500", 500: "teal.600" }}>
+          <ProgressCircle.Circle>
+            <ProgressCircle.Track />
+            <ProgressCircle.Range />
+          </ProgressCircle.Circle>
+        </ProgressCircle.Root>) : (
+        <form onSubmit={handleSubmit}>
+          <Fieldset.Root size="lg" maxW="md">
+            <Stack spacing={6}>
+              <Heading size="3xl" letterSpacing="tight">
+                Turn your saved Instagram posts{" "}
+                <Highlight query="chaos" styles={{ color: "teal.600" }}>
+                  chaos
+                </Highlight>{" "}
+                into organized collections
+              </Heading>
 
-            <Fieldset.Content>
-              <Field.Root>
-                <Field.Label>Name</Field.Label>
-                <Input
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  disabled={loading} 
-                  required
-                  autoComplete='true'
-                />
-              </Field.Root>
+              <Fieldset.Content>
+                <Field.Root>
+                  <Field.Label>Name</Field.Label>
+                  <Input
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    disabled={loading}
+                    required
+                    autoComplete='true'
+                  />
+                </Field.Root>
 
-              <Field.Root>
-                <Field.Label>Email</Field.Label>
-                <Input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  disabled={loading}
-                  required
-                  autoComplete='true'
-                />
-              </Field.Root>
+                <Field.Root>
+                  <Field.Label>Email</Field.Label>
+                  <Input
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    disabled={loading}
+                    required
+                    autoComplete='true'
+                  />
+                </Field.Root>
 
-              <Field.Root>
-                <Field.Label>Password</Field.Label>
-                <Input
-                  name="password"
-                  type="password"
-                  value={form.password}
-                  onChange={handleChange}
-                  disabled={loading}
-                  required
-                  autoComplete='true'
-                />
-              </Field.Root>
-            </Fieldset.Content>
+                <Field.Root>
+                  <Field.Label>Password</Field.Label>
+                  <Input
+                    name="password"
+                    type="password"
+                    value={form.password}
+                    onChange={handleChange}
+                    disabled={loading}
+                    required
+                    autoComplete='true'
+                  />
+                </Field.Root>
+              </Fieldset.Content>
 
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+              {error && <p style={{ color: 'red' }}>{error}</p>}
 
-            <Button type="submit" alignSelf="flex-start" isLoading={loading} colorScheme="teal">
-              Sign Up
-            </Button>
-            <Button variant="link" onClick={() => router.push('/signin')}>
-              Already have an account? Sign In
-            </Button>
-          </Stack>
-        </Fieldset.Root>
-      </form>
+              <Button type="submit" alignSelf="flex-start" isLoading={loading} colorScheme="teal">
+                Sign Up
+              </Button>
+              <Button variant="link" onClick={() => router.push('/signin')}>
+                Already have an account? Sign In
+              </Button>
+            </Stack>
+          </Fieldset.Root>
+        </form>)}
     </AbsoluteCenter>
   )
 }

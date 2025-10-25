@@ -1,6 +1,6 @@
 // import 'dotenv/config'
 
-import { categorize } from '/Users/ronimaity/Desktop/instagram-saved-organizer/src/lib/ai.js';
+import { categorize } from "./ai";
 import { ApifyClient } from "apify-client";
 
 const TOKEN = process.env.APIFY_API_TOKEN;
@@ -65,10 +65,10 @@ export async function fetchInstaData(url) {
         const res = await fetch(run.output.results)
         const data = await res.json()
 
-        const { postUrl, postType, caption, hashtags, imageUrls, videoUrls } = handleData(data);
+        const { postUrl, postType, caption, hashtags, imageUrls, videoUrls } = await handleData(data);
         const category = await categorize([caption], hashtags);
 
-        console.log({ postUrl, postType, caption, hashtags, imageUrls, videoUrls, category });
+        // console.log({ postUrl, postType, caption, hashtags, imageUrls, videoUrls, category });
         return { postUrl, postType, caption, hashtags, imageUrls, videoUrls, category };
         // depending on type, we can have different processing like if its Sidecar we will have images array else if video we will have video url else we will only have image url
 

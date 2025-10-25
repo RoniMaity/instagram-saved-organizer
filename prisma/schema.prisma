@@ -21,13 +21,13 @@ model User {
 
 
 model Category {
-  id     String   @id @default(uuid())
-  name   String
-  userId String
-  user   User     @relation(fields: [userId], references: [id])
-  posts  PostSaved[]
+  id      String      @id @default(uuid())
+  name    String
+  userId  String
+  user    User        @relation(fields: [userId], references: [id])
+  posts   PostSaved[]
 
-  @@unique([name, userId])
+  @@unique([name, userId], name: "name_userId")
 }
 
 
@@ -44,6 +44,8 @@ model PostSaved {
   id        String   @id @default(uuid())
   postUrl   String
   postType  String
+  caption     String?
+  hashtags    String[]
   userId    String
   categoryId String
   media     Media[]
