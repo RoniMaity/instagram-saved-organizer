@@ -54,12 +54,6 @@ export async function POST(req) {
 
     try {
         const { postUrl, postType, caption, hashtags, imageUrls, videoUrls, category } = await fetchInstaData(inputUrl);
-        // console.log("Fetched Instagram Data:", { postUrl, postType, caption, hashtags, imageUrls, videoUrls, category });
-
-        // const categoryRecord = await prisma.category.upsert(
-        //     where 
-
-        // )
 
         const categoryRecord = await prisma.category.upsert({
             where: {
@@ -86,7 +80,6 @@ export async function POST(req) {
             },
         });
 
-        // console.log("Created Post Record:", post);
 
         const mediaData = [
             ...(imageUrls?.map((url) => ({ type: 'image', url, postID: post.id })) || []),

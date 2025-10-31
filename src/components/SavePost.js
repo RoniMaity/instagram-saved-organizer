@@ -1,5 +1,4 @@
-
-import { Input, InputGroup, AbsoluteCenter, Button, Stack, Heading, Highlight, ProgressCircle, Text, Box } from "@chakra-ui/react"
+import { Input, InputGroup, AbsoluteCenter, Button, Stack, Heading, Highlight, Text, Box } from "@chakra-ui/react"
 
 const SavePost = ({ newUrl, setNewUrl, handleSave }) => {
     return (

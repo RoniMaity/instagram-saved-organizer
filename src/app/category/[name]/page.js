@@ -9,3 +9,5 @@ export default async function CategoryPage({ params }) {
 
   return <CategoryPageClient name={name} token={token} />;
 }
+
+// Hello everyone! this is a sample comment to test that the code comparison feature is working correctly.

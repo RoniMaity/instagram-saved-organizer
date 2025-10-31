@@ -4,6 +4,8 @@ import SavePost from '@/components/SavePost'
 import AddPostButton from '@/components/AddPostButton'
 import { AbsoluteCenter, Stack, ProgressCircle, Group } from "@chakra-ui/react"
 import CategoriesCard from '@/components/CategoriesCard';
+import Loading from '@/components/Loading'
+import { set } from 'lodash'
 
 export default function DashboardContent({ token }) {
     const [categories, setCategories] = useState([])
@@ -47,6 +49,7 @@ export default function DashboardContent({ token }) {
             if (res.ok) {
                 const data = await res.json()
                 setNewUrl('')
+                setLoading(false)
                 console.log("Post saved successfully:", data)
             }
         } catch (err) {
@@ -57,12 +60,7 @@ export default function DashboardContent({ token }) {
     if (loading)
         return (
             <AbsoluteCenter>
-                <ProgressCircle.Root value={null} size="xl" colorPalette={{ base: "teal.500", 500: "teal.600" }}>
-                    <ProgressCircle.Circle>
-                        <ProgressCircle.Track />
-                        <ProgressCircle.Range />
-                    </ProgressCircle.Circle>
-                </ProgressCircle.Root>
+                <Loading />
             </AbsoluteCenter>
         )
 
@@ -76,7 +74,7 @@ export default function DashboardContent({ token }) {
                         <Stack spacing={4} gap="4" direction="row" wrap="wrap">
 
                             {categories.map(category => (
-                                <CategoriesCard size="sm" key={category.id} category={category.name || 'Uncategorized'}/>
+                                <CategoriesCard size="sm" key={category.id} category={category.name || 'Uncategorized'} />
                             ))}
 
                         </Stack>

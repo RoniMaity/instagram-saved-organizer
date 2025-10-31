@@ -10,6 +10,7 @@ function handleData(data) {
 
     // console.log("handle data called")
 
+
     const postUrl = data[0].url;
     const postType = data[0].type;
     const caption = data[0].caption;
@@ -64,8 +65,9 @@ export async function fetchInstaData(url) {
         const run = await client.actor(ACTOR_ID).call(input);
         const res = await fetch(run.output.results)
         const data = await res.json()
+        console.log( await data)
 
-        const { postUrl, postType, caption, hashtags, imageUrls, videoUrls } = await handleData(data);
+        const { postUrl, postType, caption, hashtags, imageUrls, videoUrls } =  handleData(data);
         const category = await categorize([caption], hashtags);
 
         // console.log({ postUrl, postType, caption, hashtags, imageUrls, videoUrls, category });

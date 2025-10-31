@@ -19,7 +19,6 @@ model User {
   categories Category[]
 }
 
-
 model Category {
   id      String      @id @default(uuid())
   name    String
